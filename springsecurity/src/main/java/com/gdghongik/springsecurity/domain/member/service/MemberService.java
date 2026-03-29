@@ -26,13 +26,13 @@ public class MemberService {
     @Transactional
     public void createMember(MemberCreateRequest request) {
 
-        boolean isDuplicated = memberRepository.existsByUsername(request.getUsername()); // username이 DB에 있는 username과 겹치는 안 겹치는지 확인
+        boolean isDuplicated = memberRepository.existsByUsername(request.username()); // username이 DB에 있는 username과 겹치는 안 겹치는지 확인
         // 중복되는 유저네임이 있으면 에러
         if (isDuplicated) {
             throw new CustomException(MEMBER_USERNAME_DUPLICATE);
         }
 
-        Member member = new Member(request.getUsername(), request.getPassword());
+        Member member = new Member(request.username(), request.username());
 
         // 멤버를 저장한다
         memberRepository.save(member);
@@ -71,7 +71,7 @@ public class MemberService {
        Member member= memberRepository.findById(memberId) // 그냥 member로 받으면 안되고 Optional로 받아야 됨, but 람다 표현식을 사용하면 가능(?)
                 .orElseThrow(() -> new CustomException(MEMBER_NOT_FOUND));  // orElseThrow는 memberId로 조회했을 때 member가 null이면 예외를 발생시킴.
         // 해당하는 멤버 정보를 갱신한다
-        member.updateUsername(request.getUsername());
+        member.updateUsername(request.username());
 
     }
 
