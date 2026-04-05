@@ -18,10 +18,13 @@ public class Member {
     private String username;
 
     private String password;
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;
 
-    public Member(String username, String password) {
+    public Member(String username, String password, MemberRole role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public void updateUsername(String username) {
