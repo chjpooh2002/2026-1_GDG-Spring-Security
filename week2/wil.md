@@ -48,9 +48,9 @@
 * **초기 계정**: 기본 설정 시 ID는 `user`이며, PW는 애플리케이션 실행 시 **콘솔창**에 출력된다.
 * **빈 구현 필수**: 기본 설정 그대로는 다중 사용자를 처리하기 어렵다. 따라서 직접 스프링 시큐리티 빈을 구현하여 디폴트 빈을 대체해야 한다.
 
-##MemberRole의 value로 ROLE 접두사를 붙이는 이유
-스프링 시큐리티는 "권한(ROLE)"을 처리할 때 "ROLE_" prefix가 붙은 문자열을 권한으로 인식한다.
-hasRole("REGULAR")
+## MemberRole의 value로 ROLE 접두사를 붙이는 이유
+* **스프링 시큐리티는 "권한(ROLE)"을 처리할 때 "ROLE_" prefix가 붙은 문자열을 권한으로 인식한다.
+>hasRole("REGULAR")
 → 내부적으로 "ROLE_REGULAR"로 변환됨
-따라서 DB / Enum / 권한 값은
-👉 반드시 "ROLE_" prefix 포함해야 함
+* **따라서 DB / Enum / 권한 값은
+>👉 반드시 "ROLE_" prefix 포함해야 함
